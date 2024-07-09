@@ -1,13 +1,13 @@
-package com.termascacheuta.eterea.gateway;
+package eterea.gateway.api.rest;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class GatewayServiceApplication {
+public class GatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GatewayServiceApplication.class, args);
+		SpringApplication.run(GatewayApplication.class, args);
 	}
 
 }
