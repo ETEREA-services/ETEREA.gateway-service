@@ -1,13 +1,10 @@
 app:
+  port: 8080
   eureka: 8761
-  add-properties: true
   logging: debug
-  livereload:
-    enabled: true
-    port: 35780
 
 server:
-  port: 8080
+  port: ${app.port}
 
 eureka:
   instance:
@@ -35,11 +32,6 @@ spring:
           uri: lb://core-service
           predicates:
             - Path=/api/core/**
-  devtools:
-    livereload:
-      enabled: ${app.livereload.enabled}
-      port: ${app.livereload.port}
-    add-properties: ${app.add-properties}
 
 logging:
   level:
