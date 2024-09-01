@@ -32,6 +32,10 @@ spring:
           uri: lb://core-service
           predicates:
             - Path=/api/core/**
+        - id: pyafipws-service
+          uri: lb://pyafipws-service
+          predicates:
+            - Path=/api/afipws/**
 
 logging:
   level:
