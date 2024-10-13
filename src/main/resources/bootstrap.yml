@@ -40,6 +40,10 @@ spring:
           uri: lb://stock-service
           predicates:
             - Path=/api/stock/**
+        - id: programa-dia-service
+          uri: lb://programa-dia-service
+          predicates:
+            - Path=/api/programa-dia/**
 
 logging:
   level:
