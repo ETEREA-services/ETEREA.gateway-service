@@ -45,6 +45,10 @@ spring:
           uri: lb://programa-dia-service
           predicates:
             - Path=/api/programa-dia/**
+        - id: isolate-service
+          uri: lb://isolate-service
+          predicates:
+            - Path=/api/isolate/**
 
 logging:
   level:
