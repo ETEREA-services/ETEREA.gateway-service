@@ -77,6 +77,8 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- Implemented advanced monitoring and metrics system
+- Updated dependencies and improved infrastructure
 - Updated to Java 24 and Spring Boot 3.4.5
 - Added automated documentation generation
 - Implemented GitHub Pages for documentation
