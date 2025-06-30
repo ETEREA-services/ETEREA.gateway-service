@@ -3,8 +3,8 @@
 [![ETEREA.gateway-service CI](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
 [![Documentation Status](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/pages.yml/badge.svg)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/pages.yml)
 [![Java Version](https://img.shields.io/badge/Java-24-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.4.5-green.svg)](https://spring.io/projects/spring-boot)
-[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2024.0.1-blue.svg)](https://spring.io/projects/spring-cloud)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-green.svg)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue.svg)](https://spring.io/projects/spring-cloud)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## Description
@@ -77,9 +77,10 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- **v1.1.0 Release**
 - Implemented advanced monitoring and metrics system
 - Updated dependencies and improved infrastructure
-- Updated to Java 24 and Spring Boot 3.4.5
+- Updated to Java 24 and Spring Boot 3.5.3
 - Added automated documentation generation
 - Implemented GitHub Pages for documentation
 - Added wiki generation scripts

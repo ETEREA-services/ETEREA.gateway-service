@@ -21,34 +21,36 @@ spring:
     name: ${app.name}
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-        - id: report-service
-          uri: lb://report-service
-          predicates:
-            - Path=/api/report/**
-        - id: core-service
-          uri: lb://core-service
-          predicates:
-            - Path=/api/core/**
-        - id: pyafipws-service
-          uri: lb://pyafipws-service
-          predicates:
-            - Path=/api/afipws/**
-        - id: stock-service
-          uri: lb://stock-service
-          predicates:
-            - Path=/api/stock/**
-        - id: programa-dia-service
-          uri: lb://programa-dia-service
-          predicates:
-            - Path=/api/programa-dia/**
-        - id: isolate-service
-          uri: lb://isolate-service
-          predicates:
-            - Path=/api/isolate/**
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+          routes:
+            - id: report-service
+              uri: lb://report-service
+              predicates:
+                - Path=/api/report/**
+            - id: core-service
+              uri: lb://core-service
+              predicates:
+                - Path=/api/core/**
+            - id: pyafipws-service
+              uri: lb://pyafipws-service
+              predicates:
+                - Path=/api/afipws/**
+            - id: stock-service
+              uri: lb://stock-service
+              predicates:
+                - Path=/api/stock/**
+            - id: programa-dia-service
+              uri: lb://programa-dia-service
+              predicates:
+                - Path=/api/programa-dia/**
+            - id: isolate-service
+              uri: lb://isolate-service
+              predicates:
+                - Path=/api/isolate/**
 
 logging:
   level:
