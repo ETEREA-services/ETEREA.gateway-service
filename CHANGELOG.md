@@ -7,6 +7,10 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+## [1.1.1] - 2025-07-04
+### Changed
+- build(deps): update Spring Boot/Cloud and gateway config
+
 ## [1.1.0] - 2025-06-30
 ### Added
 - feat(monitoring): implementar sistema de métricas avanzadas

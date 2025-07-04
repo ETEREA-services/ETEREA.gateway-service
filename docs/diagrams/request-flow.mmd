@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant Client as Cliente
+    participant Gateway as API Gateway
+    participant Auth as Servicio de Autenticación
+    participant Service as Microservicio X
+
+    Client->>+Gateway: GET /api/servicio-x/recurso
+    Gateway->>+Auth: Validar token
+    Auth-->>-Gateway: Token Válido
+    Gateway->>+Service: GET /recurso
+    Service-->>-Gateway: Respuesta (Datos)
+    Gateway-->>-Client: Respuesta (Datos)
