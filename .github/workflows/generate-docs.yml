@@ -95,119 +95,115 @@ jobs:
               <script src="data.js"></script>
               <script>
                   document.getElementById('update-date').textContent = new Date().toLocaleString('es-AR');
+
+                  // --- Dependency Tree ---
+                  fetch('dependency-tree.txt')
+                      .then(response => response.text())
+                      .then(data => {
+                          document.getElementById('dependency-tree-content').textContent = data;
+                      });
+
+                  // --- Statistics ---
+                  const totalIssues = issuesData.length;
+                  const openIssues = issuesData.filter(i => i.state === 'open').length;
+                  const closedIssues = issuesData.filter(i => i.state === 'closed').length;
+                  const progress = totalIssues > 0 ? Math.round((closedIssues / totalIssues) * 100) : 0;
+                  const statsHTML = `
+                      <div class="stat-card"><div class="stat-number">${totalIssues}</div><div>Total Issues</div></div>
+                      <div class="stat-card"><div class="stat-number">${openIssues}</div><div>Issues Abiertos</div></div>
+                      <div class="stat-card"><div class="stat-number">${closedIssues}</div><div>Issues Cerrados</div></div>
+                      <div class="stat-card"><div class="stat-number">${progress}%</div><div>Progreso</div><div class="progress-bar" style="margin-top: 10px;"><div class="progress-fill" style="width: ${progress}%"></div></div></div>
+                  `;
+                  document.getElementById('stats').innerHTML = statsHTML;
+
+                  // --- Architecture Diagram ---
+                  const architectureHTML = `
+                      <h2>🏛️ Arquitectura del Servicio</h2>
+                      <div class="mermaid">
+                          graph TD
+                              subgraph "Internet"
+                                  Client[Cliente Externo]
+                              end
+                              
+                              subgraph "Eterea Ecosystem"
+                                  Gateway(Eterea API Gateway)
+                                  Auth[Servicio de Autenticación]
+                                  Users[Servicio de Usuarios]
+                                  Products[Servicio de Productos]
+                                  Discovery[Servicio de Discovery]
+                              end
+
+                              Client -- HTTPS --> Gateway
+                              Gateway -- Valida Token --> Auth
+                              Gateway -- Enruta Petición --> Users
+                              Gateway -- Enruta Petición --> Products
+                              Gateway -- Descubre Servicios --> Discovery
+                              Auth -- Se registra en --> Discovery
+                              Users -- Se registra en --> Discovery
+                              Products -- Se registra en --> Discovery
+                      </div>
+                  `;
+                  document.getElementById('architecture').innerHTML = architectureHTML;
+
+                  // --- Sequence Diagram ---
+                  fetch('diagrams/request-flow.mmd')
+                      .then(response => response.text())
+                      .then(data => {
+                          const sequenceContainer = document.getElementById('sequence-diagram');
+                          sequenceContainer.innerHTML = '<h2>🔄 Diagrama de Secuencia: Flujo de Petición</h2><div class="mermaid">' + data + '</div>';
+                          mermaid.init(undefined, sequenceContainer.querySelector('.mermaid'));
+                      });
+
+                  // --- State Diagram ---
+                  fetch('diagrams/gateway-status.mmd')
+                      .then(response => response.text())
+                      .then(data => {
+                          const stateContainer = document.getElementById('state-diagram');
+                          stateContainer.innerHTML = '<h2>🚦 Diagrama de Estado: Ciclo de Vida del Gateway</h2><div class="mermaid">' + data + '</div>';
+                          mermaid.init(undefined, stateContainer.querySelector('.mermaid'));
+                      });
+              
+                  // --- Milestones ---
+                  let milestonesHTML = '<h2>🎯 Milestones</h2>';
+                  milestonesData.forEach(milestone => {
+                      const milestoneIssues = issuesData.filter(i => i.milestone && i.milestone.id === milestone.id);
+                      const openCount = milestoneIssues.filter(i => i.state === 'open').length;
+                      const totalCount = milestoneIssues.length;
+                      milestonesHTML += `
+                          <div class="section">
+                              <h3><a href="${milestone.html_url}" target="_blank">${milestone.title}</a></h3>
+                              <p>${milestone.description || 'Sin descripción'}</p>
+                              <p><strong>Fecha límite:</strong> ${milestone.due_on ? new Date(milestone.due_on).toLocaleDateString('es-AR') : 'No definida'}</p>
+                              <p><strong>Progreso:</strong> ${totalCount - openCount} de ${totalCount} completados</p>
+                              <div class="progress-bar"><div class="progress-fill" style="width: ${totalCount > 0 ? ((totalCount - openCount) / totalCount * 100) : 0}%"></div></div>
+                              <h4>Issues:</h4>
+                              ${milestoneIssues.map(issue => `
+                                  <div class="item">
+                                      <strong><a href="${issue.html_url}" target="_blank">#${issue.number} - ${issue.title}</a></strong>
+                                      ${issue.labels.map(label => `<span class="label" style="background-color: #${label.color};">${label.name}</span>`).join('')}
+                                      <span style="float: right; color: ${issue.state === 'open' ? '#dc3545' : '#28a745'}">${issue.state === 'open' ? '🔴 Abierto' : '✅ Cerrado'}</span>
+                                  </div>
+                              `).join('')}
+                          </div>
+                      `;
+                  });
+                  document.getElementById('milestones').innerHTML = milestonesHTML;
+
+                  // --- Pull Requests ---
+                  let prsHTML = '<h2>🔄 Pull Requests</h2>';
+                  prsData.forEach(pr => {
+                      prsHTML += `
+                          <div class="item">
+                              <strong><a href="${pr.html_url}" target="_blank">#${pr.number} - ${pr.title}</a></strong>
+                              <p style="margin: 0; font-size: 0.9rem;">Creado por: ${pr.user.login}</p>
+                              <span style="float: right; color: ${pr.state === 'open' ? '#dc3545' : '#28a745'}">${pr.state === 'open' ? '🔴 Abierto' : '✅ Cerrado'}</span>
+                          </div>
+                      `;
+                  });
+                  document.getElementById('pull-requests').innerHTML = prsHTML;
               </script>
           </body>
           </html>
-          EOF
-          
-          cat >> public/index.html << 'EOF'
-          <script>
-              // --- Dependency Tree ---
-              fetch('dependency-tree.txt')
-                  .then(response => response.text())
-                  .then(data => {
-                      document.getElementById('dependency-tree-content').textContent = data;
-                  });
-
-              // --- Statistics ---
-              const totalIssues = issuesData.length;
-              const openIssues = issuesData.filter(i => i.state === 'open').length;
-              const closedIssues = issuesData.filter(i => i.state === 'closed').length;
-              const progress = totalIssues > 0 ? Math.round((closedIssues / totalIssues) * 100) : 0;
-              const statsHTML = `
-                  <div class="stat-card"><div class="stat-number">${totalIssues}</div><div>Total Issues</div></div>
-                  <div class="stat-card"><div class="stat-number">${openIssues}</div><div>Issues Abiertos</div></div>
-                  <div class="stat-card"><div class="stat-number">${closedIssues}</div><div>Issues Cerrados</div></div>
-                  <div class="stat-card"><div class="stat-number">${progress}%</div><div>Progreso</div><div class="progress-bar" style="margin-top: 10px;"><div class="progress-fill" style="width: ${progress}%"></div></div></div>
-              `;
-              document.getElementById('stats').innerHTML = statsHTML;
-
-              // --- Architecture Diagram ---
-              const architectureHTML = `
-                  <h2>🏛️ Arquitectura del Servicio</h2>
-                  <div class="mermaid">
-                      graph TD
-                          subgraph "Internet"
-                              Client[Cliente Externo]
-                          end
-                          
-                          subgraph "Eterea Ecosystem"
-                              Gateway(Eterea API Gateway)
-                              Auth[Servicio de Autenticación]
-                              Users[Servicio de Usuarios]
-                              Products[Servicio de Productos]
-                              Discovery[Servicio de Discovery]
-                          end
-
-                          Client -- HTTPS --> Gateway
-                          Gateway -- Valida Token --> Auth
-                          Gateway -- Enruta Petición --> Users
-                          Gateway -- Enruta Petición --> Products
-                          Gateway -- Descubre Servicios --> Discovery
-                          Auth -- Se registra en --> Discovery
-                          Users -- Se registra en --> Discovery
-                          Products -- Se registra en --> Discovery
-                  </div>
-              `;
-              document.getElementById('architecture').innerHTML = architectureHTML;
-
-              // --- Sequence Diagram ---
-              fetch('diagrams/request-flow.mmd')
-                  .then(response => response.text())
-                  .then(data => {
-                      const sequenceContainer = document.getElementById('sequence-diagram');
-                      sequenceContainer.innerHTML = '<h2>🔄 Diagrama de Secuencia: Flujo de Petición</h2><div class="mermaid">' + data + '</div>';
-                      mermaid.init(undefined, sequenceContainer.querySelector('.mermaid'));
-                  });
-
-              // --- State Diagram ---
-              fetch('diagrams/gateway-status.mmd')
-                  .then(response => response.text())
-                  .then(data => {
-                      const stateContainer = document.getElementById('state-diagram');
-                      stateContainer.innerHTML = '<h2>🚦 Diagrama de Estado: Ciclo de Vida del Gateway</h2><div class="mermaid">' + data + '</div>';
-                      mermaid.init(undefined, stateContainer.querySelector('.mermaid'));
-                  });
-          
-              // --- Milestones ---
-              let milestonesHTML = '<h2>🎯 Milestones</h2>';
-              milestonesData.forEach(milestone => {
-                  const milestoneIssues = issuesData.filter(i => i.milestone && i.milestone.id === milestone.id);
-                  const openCount = milestoneIssues.filter(i => i.state === 'open').length;
-                  const totalCount = milestoneIssues.length;
-                  milestonesHTML += `
-                      <div class="section">
-                          <h3><a href="${milestone.html_url}" target="_blank">${milestone.title}</a></h3>
-                          <p>${milestone.description || 'Sin descripción'}</p>
-                          <p><strong>Fecha límite:</strong> ${milestone.due_on ? new Date(milestone.due_on).toLocaleDateString('es-AR') : 'No definida'}</p>
-                          <p><strong>Progreso:</strong> ${totalCount - openCount} de ${totalCount} completados</p>
-                          <div class="progress-bar"><div class="progress-fill" style="width: ${totalCount > 0 ? ((totalCount - openCount) / totalCount * 100) : 0}%"></div></div>
-                          <h4>Issues:</h4>
-                          ${milestoneIssues.map(issue => `
-                              <div class="item">
-                                  <strong><a href="${issue.html_url}" target="_blank">#${issue.number} - ${issue.title}</a></strong>
-                                  ${issue.labels.map(label => `<span class="label" style="background-color: #${label.color};">${label.name}</span>`).join('')}
-                                  <span style="float: right; color: ${issue.state === 'open' ? '#dc3545' : '#28a745'}">${issue.state === 'open' ? '🔴 Abierto' : '✅ Cerrado'}</span>
-                              </div>
-                          `).join('')}
-                      </div>
-                  `;
-              });
-              document.getElementById('milestones').innerHTML = milestonesHTML;
-
-              // --- Pull Requests ---
-              let prsHTML = '<h2>🔄 Pull Requests</h2>';
-              prsData.forEach(pr => {
-                  prsHTML += `
-                      <div class="item">
-                          <strong><a href="${pr.html_url}" target="_blank">#${pr.number} - ${pr.title}</a></strong>
-                          <p style="margin: 0; font-size: 0.9rem;">Creado por: ${pr.user.login}</p>
-                          <span style="float: right; color: ${pr.state === 'open' ? '#dc3545' : '#28a745'}">${pr.state === 'open' ? '🔴 Abierto' : '✅ Cerrado'}</span>
-                      </div>
-                  `;
-              });
-              document.getElementById('pull-requests').innerHTML = prsHTML;
-          </script>
           EOF
 
       - name: Generate Wiki Content
