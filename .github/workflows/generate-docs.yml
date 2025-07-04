@@ -43,6 +43,12 @@ jobs:
           curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/issues?state=all&per_page=100" > issues.json
           curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/${{ github.repository }}/pulls?state=all&per_page=100" > prs.json
           
+          echo "const milestonesData = $(cat milestones.json);" > public/data.js
+          echo "const issuesData = $(cat issues.json);" >> public/data.js
+          echo "const prsData = $(cat prs.json);" >> public/data.js
+
+          cp -r docs/diagrams public/diagrams
+
           cat > public/index.html << 'EOF'
           <!DOCTYPE html>
           <html lang="es">
@@ -86,6 +92,7 @@ jobs:
               <div id="pull-requests" class="section"></div>
               
               <script>mermaid.initialize({startOnLoad:true});</script>
+              <script src="data.js"></script>
               <script>
                   document.getElementById('update-date').textContent = new Date().toLocaleString('es-AR');
               </script>
@@ -93,16 +100,7 @@ jobs:
           </html>
           EOF
           
-          cp -r docs/diagrams public/diagrams
-
-          cat > public/data.js << 'EOF'
-          const milestonesData = $(cat milestones.json);
-          const issuesData = $(cat issues.json);
-          const prsData = $(cat prs.json);
-          EOF
-          
           cat >> public/index.html << 'EOF'
-          <script src="data.js"></script>
           <script>
               // --- Dependency Tree ---
               fetch('dependency-tree.txt')
