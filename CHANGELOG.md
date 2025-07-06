@@ -7,6 +7,11 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [Unreleased]
 
+## [1.1.2] - 2025-07-06
+### Fixed
+- fix(docs): reparar la estructura de index.html en el workflow
+- fix(docs): corregir la generación de data.js en el workflow
+
 ## [1.1.1] - 2025-07-04
 ### Changed
 - build(deps): update Spring Boot/Cloud and gateway config
