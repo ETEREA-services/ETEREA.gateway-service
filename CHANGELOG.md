@@ -5,7 +5,18 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.2.0] - 2025-07-21
+### Added
+- Integración con SonarCloud para análisis de calidad de código.
+
+### Changed
+- Refactorización del workflow de CI/CD para construcción de imágenes JVM, incluyendo login a Docker Hub y etiquetado semántico.
+- Implementación de Dockerfile multi-etapa para optimizar el tamaño de la imagen y mejorar la seguridad con usuario no privilegiado.
+
+### Removed
+- Eliminación de los scripts del Maven Wrapper (`mvnw`, `mvnw.cmd`).
+- Eliminación de `Dockerfile.local`.
+- Eliminación de `pages.png`.
 
 ## [1.1.2] - 2025-07-06
 ### Fixed
@@ -93,7 +104,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Configuración básica de Maven
 - Estructura inicial del proyecto
 
-[Unreleased]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.0...HEAD
+[1.2.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.2...v1.2.0
+[1.1.2]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.1...v1.1.2
+[1.1.1]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v0.9.0...v1.0.0
 [0.9.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v0.8.0...v0.9.0
