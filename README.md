@@ -1,6 +1,6 @@
 # ETEREA.gateway-service
 
-[![ETEREA.gateway-service Build JVM Image](https://github.com/ETEREa-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
+[![ETEREA.gateway-service Build JVM Image](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
 [![Java Version](https://img.shields.io/badge/Java-24-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-green.svg)](https://spring.io/projects/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue.svg)](https://spring.io/projects/spring-cloud)
@@ -18,7 +18,7 @@ ETEREA.gateway-service is a Spring Cloud Gateway service that acts as the entry 
 ## Features
 - Dynamic service routing
 - Load balancing with Spring Cloud LoadBalancer
-- Service discovery with Eureka
+- **Service discovery with Consul**
 - CORS configuration
 - Health monitoring with Spring Boot Actuator
 - Caffeine cache for optimized load balancing
@@ -50,14 +50,14 @@ mvn spring-boot:run
 ### Docker
 Build and run with Docker:
 ```bash
-docker build -t eterea-gateway-service:1.2.0 .
-docker run -p 8080:8080 eterea-gateway-service:1.2.0
+docker build -t eterea-gateway-service:2.0.0 .
+docker run -p 8080:8080 eterea-gateway-service:2.0.0
 ```
 
 ## Configuration
 The service can be configured through `application.yml` or environment variables. Key configurations include:
 - Server port
-- Service discovery settings
+- **Consul service discovery settings**
 - Route definitions
 - CORS policies
 - Load balancer settings
@@ -83,6 +83,12 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- **v2.0.0 Release**
+- Changed: Se reemplazó el sistema de descubrimiento de servicios de Eureka a Consul.
+- Changed: Actualización de la configuración en `bootstrap.yml` para soportar Consul.
+- Changed: Cambio del nombre del proyecto a "ETEREA.gateway-service" en `pom.xml`.
+- Removed: Eliminada la dependencia de `spring-cloud-starter-netflix-eureka-client`.
+- Removed: Eliminada la configuración de Eureka en los archivos de configuración.
 - **v1.2.0 Release**
 - Added: Integración con SonarCloud para análisis de calidad de código.
 - Changed: Refactorización del workflow de CI/CD para construcción de imágenes JVM, incluyendo login a Docker Hub y etiquetado semántico.
@@ -90,19 +96,6 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 - Removed: Eliminación de los scripts del Maven Wrapper (`mvnw`, `mvnw.cmd`).
 - Removed: Eliminación de `Dockerfile.local`.
 - Removed: Eliminación de `pages.png`.
-- **v1.1.2 Release**
-- Fix(docs): repair the structure of index.html in the workflow
-- Fix(docs): correct the generation of data.js in the workflow
-- **v1.1.1 Release**
-- Build(deps): update Spring Boot/Cloud and gateway config
-- **v1.1.0 Release**
-- Implemented advanced monitoring and metrics system
-- Updated dependencies and improved infrastructure
-- Updated to Java 24 and Spring Boot 3.5.3
-- Added automated documentation generation
-- Implemented GitHub Pages for documentation
-- Added wiki generation scripts
-- Improved CI/CD infrastructure
 
 ## Contact
 ETEREA Services Team

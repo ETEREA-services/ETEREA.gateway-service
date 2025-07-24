@@ -5,6 +5,19 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2025-07-24
+### Changed
+- Se reemplazó el sistema de descubrimiento de servicios: **de Eureka a Consul**.
+- Actualización de la configuración en `bootstrap.yml` para soportar Consul.
+- Cambio del nombre del proyecto a "ETEREA.gateway-service" en `pom.xml`.
+
+### Removed
+- Eliminada la dependencia de `spring-cloud-starter-netflix-eureka-client`.
+- Eliminada la configuración de Eureka en los archivos de configuración.
+
+### Notes
+- Este cambio es incompatible con versiones anteriores que dependían de Eureka para el descubrimiento de servicios.
+
 ## [1.2.0] - 2025-07-21
 ### Added
 - Integración con SonarCloud para análisis de calidad de código.
