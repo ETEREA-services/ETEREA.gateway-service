@@ -20,14 +20,13 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 
 ## [1.2.0] - 2025-07-21
 ### Added
-- Integración con SonarCloud para análisis de calidad de código.
-
-### Changed
 - Refactorización del workflow de CI/CD para construcción de imágenes JVM, incluyendo login a Docker Hub y etiquetado semántico.
+[2.0.1] - 2025-08-05
+### Changed
+- Actualización de la dependencia `spring-boot-starter-parent` de la versión `3.5.3` a `3.5.4` en `pom.xml`.
 - Implementación de Dockerfile multi-etapa para optimizar el tamaño de la imagen y mejorar la seguridad con usuario no privilegiado.
 
 ### Removed
-- Eliminación de los scripts del Maven Wrapper (`mvnw`, `mvnw.cmd`).
 - Eliminación de `Dockerfile.local`.
 - Eliminación de `pages.png`.
 
