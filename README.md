@@ -2,7 +2,7 @@
 
 [![ETEREA.gateway-service Build JVM Image](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
 [![Java Version](https://img.shields.io/badge/Java-24-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.3-green.svg)](https://spring.io/projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-green.svg)](https://spring.io/projects/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue.svg)](https://spring.io/projects/spring-cloud)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SonarCloud Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ETEREA-services_ETEREA.gateway-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ETEREA-services_ETEREA.gateway-service)
@@ -50,8 +50,8 @@ mvn spring-boot:run
 ### Docker
 Build and run with Docker:
 ```bash
-docker build -t eterea-gateway-service:2.0.0 .
-docker run -p 8080:8080 eterea-gateway-service:2.0.0
+docker build -t eterea-gateway-service:2.0.1 .
+docker run -p 8080:8080 eterea-gateway-service:2.0.1
 ```
 
 ## Configuration
@@ -83,6 +83,8 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- **v2.0.1 Release**
+- Changed: Actualización de la dependencia `spring-boot-starter-parent` de la versión `3.5.3` a `3.5.4` en `pom.xml`.
 - **v2.0.0 Release**
 - Changed: Se reemplazó el sistema de descubrimiento de servicios de Eureka a Consul.
 - Changed: Actualización de la configuración en `bootstrap.yml` para soportar Consul.
