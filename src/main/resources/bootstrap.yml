@@ -54,6 +54,10 @@ spring:
               uri: lb://import-service
               predicates:
                 - Path=/api/import/**
+            - id: lista-precio-proxy
+              uri: lb://lista-precio-proxy
+              predicates:
+                - Path=/api/lista/precio/**
 
 logging:
   level:
