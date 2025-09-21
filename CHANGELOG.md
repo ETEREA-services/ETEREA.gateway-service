@@ -4,6 +4,14 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.1.0] - 2025-09-21
+### Added
+- feat(logging): Added LoggingGlobalFilter for comprehensive request and response logging
+- feat(routing): Added new route for lista-precio-proxy service
+
+### Changed
+- build(deps): Updated Spring Boot starter parent from 3.5.4 to 3.5.6
+
 
 ## [2.0.0] - 2025-07-24
 ### Changed

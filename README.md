@@ -2,7 +2,7 @@
 
 [![ETEREA.gateway-service Build JVM Image](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
 [![Java Version](https://img.shields.io/badge/Java-24-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.4-green.svg)](https://spring.io/projects/spring-boot)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-green.svg)](https://spring.io/projects/spring-boot)
 [![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue.svg)](https://spring.io/projects/spring-cloud)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SonarCloud Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ETEREA-services_ETEREA.gateway-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ETEREA-services_ETEREA.gateway-service)
@@ -21,6 +21,7 @@ ETEREA.gateway-service is a Spring Cloud Gateway service that acts as the entry 
 - **Service discovery with Consul**
 - CORS configuration
 - Health monitoring with Spring Boot Actuator
+- Request/response logging with LoggingGlobalFilter
 - Caffeine cache for optimized load balancing
 - SonarCloud integration for code quality analysis
 
@@ -50,7 +51,7 @@ mvn spring-boot:run
 ### Docker
 Build and run with Docker:
 ```bash
-docker build -t eterea-gateway-service:2.0.1 .
+docker build -t eterea-gateway-service:2.1.0 .
 docker run -p 8080:8080 eterea-gateway-service:2.0.1
 ```
 
@@ -83,6 +84,10 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- **v2.1.0 Release**
+- Added: Request/response logging with LoggingGlobalFilter
+- Added: New route for lista-precio-proxy service
+- Changed: Updated Spring Boot starter parent from 3.5.4 to 3.5.6
 - **v2.0.1 Release**
 - Changed: Actualización de la dependencia `spring-boot-starter-parent` de la versión `3.5.3` a `3.5.4` en `pom.xml`.
 - **v2.0.0 Release**
