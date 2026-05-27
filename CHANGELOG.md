@@ -4,6 +4,15 @@ Todos los cambios notables en este proyecto serán documentados en este archivo.
 
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [2.2.0] - 2026-05-27
+### Changed
+- build(deps): Actualización de Spring Boot de 3.5.6 a 4.0.6
+- build(deps): Actualización de Java de 24 a 25
+- build(deps): Actualización de Spring Cloud de 2025.0.0 a 2025.1.0
+- ci(actions): Actualización de GitHub Actions a versiones superiores (checkout v6, setup-java v5, cache v5, deploy-pages v5)
+- ci(docker): Actualización de imágenes base Docker a JDK 25
+- docs(pipeline): Corrección de ruta de salida de documentación de `public/` a `docs/`
+
 ## [2.1.0] - 2025-09-21
 ### Added
 - feat(logging): Added LoggingGlobalFilter for comprehensive request and response logging
@@ -12,6 +21,14 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ### Changed
 - build(deps): Updated Spring Boot starter parent from 3.5.4 to 3.5.6
 
+## [2.0.1] - 2025-08-05
+### Changed
+- Actualización de la dependencia `spring-boot-starter-parent` de la versión `3.5.3` a `3.5.4` en `pom.xml`.
+- Implementación de Dockerfile multi-etapa para optimizar el tamaño de la imagen y mejorar la seguridad con usuario no privilegiado.
+
+### Removed
+- Eliminación de `Dockerfile.local`.
+- Eliminación de `pages.png`.
 
 ## [2.0.0] - 2025-07-24
 ### Changed
@@ -29,14 +46,6 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 ## [1.2.0] - 2025-07-21
 ### Added
 - Refactorización del workflow de CI/CD para construcción de imágenes JVM, incluyendo login a Docker Hub y etiquetado semántico.
-[2.0.1] - 2025-08-05
-### Changed
-- Actualización de la dependencia `spring-boot-starter-parent` de la versión `3.5.3` a `3.5.4` en `pom.xml`.
-- Implementación de Dockerfile multi-etapa para optimizar el tamaño de la imagen y mejorar la seguridad con usuario no privilegiado.
-
-### Removed
-- Eliminación de `Dockerfile.local`.
-- Eliminación de `pages.png`.
 
 ## [1.1.2] - 2025-07-06
 ### Fixed
@@ -124,6 +133,9 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.h
 - Configuración básica de Maven
 - Estructura inicial del proyecto
 
+[2.2.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v2.1.0...v2.2.0
+[2.1.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v2.0.1...v2.1.0
+[2.0.1]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v2.0.0...v2.0.1
 [1.2.0]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/ETEREA-services/ETEREA.gateway-service/compare/v1.1.0...v1.1.1
