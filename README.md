@@ -1,9 +1,9 @@
 # ETEREA.gateway-service
 
 [![ETEREA.gateway-service Build JVM Image](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml/badge.svg?branch=main)](https://github.com/ETEREA-services/ETEREA.gateway-service/actions/workflows/maven.yml)
-[![Java Version](https://img.shields.io/badge/Java-24-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
-[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.6-green.svg)](https://spring.io/projects/spring-boot)
-[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.0.0-blue.svg)](https://spring.io/projects/spring-cloud)
+[![Java Version](https://img.shields.io/badge/Java-25-blue.svg)](https://www.oracle.com/java/technologies/downloads/)
+[![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.6-green.svg)](https://spring.io/projects/spring-boot)
+[![Spring Cloud](https://img.shields.io/badge/Spring%20Cloud-2025.1.0-blue.svg)](https://spring.io/projects/spring-cloud)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![SonarCloud Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=ETEREA-services_ETEREA.gateway-service&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ETEREA-services_ETEREA.gateway-service)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=ETEREA-services_ETEREA.gateway-service&metric=bugs)](https://sonarcloud.io/summary/new_code?id=ETEREA-services_ETEREA.gateway-service)
@@ -26,7 +26,7 @@ ETEREA.gateway-service is a Spring Cloud Gateway service that acts as the entry 
 - SonarCloud integration for code quality analysis
 
 ## Prerequisites
-- Java 24
+- Java 25
 - Maven 3.x
 - Docker (optional)
 
@@ -51,8 +51,8 @@ mvn spring-boot:run
 ### Docker
 Build and run with Docker:
 ```bash
-docker build -t eterea-gateway-service:2.1.0 .
-docker run -p 8080:8080 eterea-gateway-service:2.0.1
+docker build -t eterea-gateway-service:2.2.0 .
+docker run -p 8080:8080 eterea-gateway-service:2.2.0
 ```
 
 ## Configuration
@@ -84,6 +84,11 @@ The service exposes health endpoints via Spring Boot Actuator:
 This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
 ## Recent Changes
+- **v2.2.0 Release**
+- Changed: Actualización de Spring Boot de 3.5.6 a 4.0.6
+- Changed: Actualización de Java de 24 a 25
+- Changed: Actualización de Spring Cloud de 2025.0.0 a 2025.1.0
+- Changed: Actualización de GitHub Actions a versiones superiores
 - **v2.1.0 Release**
 - Added: Request/response logging with LoggingGlobalFilter
 - Added: New route for lista-precio-proxy service
